@@ -9,7 +9,7 @@ unzip /tmp/cart.zip
 cd /app
 npm install
 
-cp root/Roboshop1/cart.service /etc/systemd/system/cart.service
+cp /root/Roboshop1/cart.service /etc/systemd/system/cart.service
 
 systemctl daemon-reload
 systemctl enable cart
