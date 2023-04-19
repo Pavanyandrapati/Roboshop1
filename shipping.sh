@@ -8,9 +8,7 @@ unzip /tmp/shipping.zip
 cd /app
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
-
 cp /root/Roboshop1/shipping.service /etc/systemd/system/shipping.service
-
 systemctl daemon-reload
 systemctl enable shipping
 systemctl start shipping
