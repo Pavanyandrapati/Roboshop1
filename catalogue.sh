@@ -8,10 +8,10 @@ cd /app
 unzip /tmp/catalogue.zip
 npm install
 
-cp /root/Roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp /root/Roboshop1/catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
-cp /root/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /root/Roboshop1/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js
