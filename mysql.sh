@@ -1,6 +1,6 @@
 dnf module disable mysql -y
 
-cp root/Roboshop1/mysql.repo /etc/yum.repos.d/mysql.repo
+cp /root/Roboshop1/mysql.repo /etc/yum.repos.d/mysql.repo
 
 yum install mysql-community-server -y
 
