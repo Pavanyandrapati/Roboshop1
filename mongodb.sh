@@ -1,3 +1,4 @@
+
 yum install mongodb-org -y
 
 cp /root/Roboshop1/mongo.repo /etc/yum.repos.d/mongo.repo
