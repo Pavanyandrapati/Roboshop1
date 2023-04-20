@@ -7,6 +7,5 @@ Environment=CART_ENDPOINT=cart-dev.pavan345.online
 Environment=DB_HOST=mysql-dev.pavan345.online
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
-
 [Install]
 WantedBy=multi-user.target
