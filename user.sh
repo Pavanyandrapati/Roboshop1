@@ -34,7 +34,7 @@ systemctl start user
 systemctl restart user
 
 echo -e "\e[31m>>>> Copying mongo repos <<<<\e[0m"
-cp {${script_path}}/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>> installing mongo repo and schema <<<<\e[0m"
 yum install mongodb-org-shell -y
