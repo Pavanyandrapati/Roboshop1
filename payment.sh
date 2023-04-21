@@ -1,4 +1,5 @@
-script_path=${dirname $0}
+script=$(realpath "$0")
+script_path=$(dirname "$script")
 source $script_path/common.sh
 echo -e "\e[31m>>>> install python36 <<<<\e[0m"
 yum install python36 gcc python3-devel -y
