@@ -4,7 +4,8 @@ source $script_path/common.sh
 mysql_root_password=$1
 if [-z "$mysql_root_password"];then
   echo input missing
-  fi
+  exit
+fi
 echo -e "\e[31m>>>> disable mysql <<<<\e[0m"
 dnf module disable mysql -y
 
