@@ -39,10 +39,10 @@ cd /app
 print_head "unzip content"
 unzip /tmp/${component}.zip
 
-print_head "instal dependencies'
+print_head "instal dependencies"
 npm install
 
-print_head "Copying ${component} service""
+print_head "Copying service"
 cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
 print_head "start cart service"
