@@ -1,6 +1,10 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source $script_path/common.sh
+mysql_root_password=$1
+if [-z "$mysql_root_password"];then
+  echo input missing
+  fi
 echo -e "\e[31m>>>> disable mysql <<<<\e[0m"
 dnf module disable mysql -y
 
@@ -15,5 +19,5 @@ systemctl enable mysqld
 systemctl start mysqld
 
 echo -e "\e[31m>>>> reset mysql password <<<<\e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1
+mysql_secure_installation --set-root-pass $mysql_root_password
 systemctl restart mysqld
