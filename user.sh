@@ -25,7 +25,7 @@ echo -e "\e[31m>>>> instal dependencies<<<<\e[0m"
 npm install
 
 echo -e "\e[31m>>>> Copying user service <<<<\e[0m"
-cp {${script_path}}/user.service /etc/systemd/system/user.service
+cp ${script_path}/user.service /etc/systemd/system/user.service
 
 echo -e "\e[31m>>>> start user services <<<<\e[0m"
 systemctl daemon-reload
