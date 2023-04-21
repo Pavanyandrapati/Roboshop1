@@ -1,7 +1,7 @@
 script_path=${dirname $0}
-source ${script_path}/common.sh
+source $script_path/common.sh
 echo -e "\e[31m>>>> Copying mongo repo <<<<\e[0m"
-cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[31m>>>> install mongodb <<<<\e[0m"
 yum install mongodb-org -y
 echo -e "\e[31m>>>> start mongodb services <<<<\e[0m"

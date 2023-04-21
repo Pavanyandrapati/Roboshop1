@@ -1,10 +1,10 @@
 script_path=${dirname $0}
-source ${script_path}/common.sh
+source $script_path/common.sh
 echo -e "\e[31m>>>> disable mysql <<<<\e[0m"
 dnf module disable mysql -y
 
 echo -e "\e[31m>>>> Copying mysql repo <<<<\e[0m"
-cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
+cp $script_path/mysql.repo /etc/yum.repos.d/mysql.repo
 
 echo -e "\e[31m>>>> install mysql <<<<\e[0m"
 yum install mysql-community-server -y
