@@ -7,7 +7,7 @@ print_head() {
  }
 
 schema_setup() {
-  if ["$schema_setup"="mongo"];then
+  if [ "$schema_setup" == "mongo" ];then
    print_head "Copying mongo repo"
   cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
 
