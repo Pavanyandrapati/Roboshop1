@@ -45,9 +45,10 @@ npm install
 print_head "Copying ${component} service""
 cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
-print_headstart cart service 
+print_head "start cart service"
 systemctl daemon-reload
 systemctl enable ${component}
 systemctl start ${component}
 schema_setup
+
 }
