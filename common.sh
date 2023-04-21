@@ -8,14 +8,14 @@ print_head() {
 
 schema_setup() {
   if [ "$schema_setup" == "mongo" ]; then
-   print_head "Copying mongo repo"
-  cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
+    print_head "Copying mongo repo"
+    cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
 
-   print_head "installing mongodb"
-  yum install mongodb-org-shell -y
+    print_head "installing mongodb"
+    yum install mongodb-org-shell -y
 
-   print_head "load schema"
-  mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js
+    print_head "load schema"
+     mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js
   fi
 }
 func_nodejs() {
