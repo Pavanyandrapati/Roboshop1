@@ -1,3 +1,5 @@
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 echo -e "\e[31m>>>> Downloading content <<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -5,7 +7,7 @@ echo -e "\e[31m>>>> installing nodejs <<<<\e[0m"
 yum install nodejs -y
 
 echo -e "\e[31m>>>> adding user <<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[31m>>>> adding user <<<<\e[0m"
 rm -rf app
@@ -23,7 +25,7 @@ echo -e "\e[31m>>>> instal dependencies<<<<\e[0m"
 npm install
 
 echo -e "\e[31m>>>> Copying user service <<<<\e[0m"
-cp /root/Roboshop1/user.service /etc/systemd/system/user.service
+cp {script_patch}/user.service /etc/systemd/system/user.service
 
 echo -e "\e[31m>>>> start user services <<<<\e[0m"
 systemctl daemon-reload
@@ -32,7 +34,7 @@ systemctl start user
 systemctl restart user
 
 echo -e "\e[31m>>>> Copying mongo repos <<<<\e[0m"
-cp /root/Roboshop1/mongo.repo /etc/yum.repos.d/mongo.repo
+cp {script_patch}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>> installing mongo repo and schema <<<<\e[0m"
 yum install mongodb-org-shell -y

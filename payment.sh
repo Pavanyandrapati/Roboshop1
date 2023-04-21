@@ -1,8 +1,9 @@
+source common.sh
 echo -e "\e[31m>>>> install python36 <<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
 echo -e "\e[31m>>>> add user <<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[31m>>>> create dir <<<<\e[0m"
 mkdir /app
@@ -19,7 +20,7 @@ echo -e "\e[31m>>>> pip3.6 install <<<<\e[0m"
 pip3.6 install -r requirements.txt
 
 echo -e "\e[31m>>>> Copying payment service <<<<\e[0m"
-cp /root/Roboshop1/payment.service /etc/systemd/system/payment.service
+cp {script_patch}/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[31m>>>> start payment service <<<<\e[0m"
 systemctl daemon-reload

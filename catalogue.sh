@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[31m>>>> Downloading content <<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -5,7 +7,7 @@ echo -e "\e[31m>>>> install nodejs <<<<\e[0m"
 yum install nodejs -y
 
 echo -e "\e[31m>>>> add user <<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 ech -e "\e[31m>>>>>create dir <<<<\e[0m"
 rm -rf /app
@@ -22,7 +24,7 @@ echo -e "\e[31m>>>> instal dependencies <<<<\e[0m"
 npm install
 
 echo -e "\e[31m>>>> Copying catalogue service <<<<\e[0m"
-cp /root/Roboshop1/catalogue.service /etc/systemd/system/catalogue.service
+cp {script_patch}/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[31m>>>> start cart service <<<<\e[0m"
 systemctl daemon-reload
@@ -30,7 +32,7 @@ systemctl enable catalogue
 systemctl start catalogue
 
 echo -e "\e[31m>>>> Copying mongo repo <<<<\e[0m"
-cp /root/Roboshop1/mongo.repo /etc/yum.repos.d/mongo.repo
+cp {script_patch}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[31m>>>> installing mongodb <<<<\e[0m"
 yum install mongodb-org-shell -y

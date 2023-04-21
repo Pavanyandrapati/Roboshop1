@@ -1,8 +1,9 @@
+source common.sh
 echo -e "\e[31m>>>> install maven <<<<\e[0m"
 yum install maven -y
 
 echo -e "\e[31m>>>> add user <<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 rm -rf /app
 
 echo -e "\e[31m>>>> create dir <<<<\e[0m"
@@ -21,7 +22,7 @@ mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
 echo -e "\e[31m>>>> copying shipping service <<<<\e[0m"
-cp /root/Roboshop1/shipping.service /etc/systemd/system/shipping.service
+cp {script_patch}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[31m>>>> start shipping service <<<<\e[0m"
 systemctl daemon-reload

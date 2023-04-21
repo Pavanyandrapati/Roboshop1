@@ -11,5 +11,5 @@ cd /usr/share/nginx/html
 echo -e "\e[31m>>>> unzip content <<<<\e[0m"
 unzip /tmp/frontend.zip
 echo -e "\e[31m>>>> Copying roboshop serives <<<<\e[0m"
-cp /root/Roboshop1/roboshop.service /etc/nginx/default.d/roboshop.conf
+cp {script_patch} /roboshop.service /etc/nginx/default.d/roboshop.conf
 systemctl restart nginx
