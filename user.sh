@@ -8,9 +8,8 @@ yum install nodejs -y
 
 echo -e "\e[31m>>>> adding user <<<<\e[0m"
 useradd ${app_user}
-
+rm -rf /app
 echo -e "\e[31m>>>> adding user <<<<\e[0m"
-rm -rf app
 mkdir /app
 
 echo -e "\e[31m>>>> Downloading content <<<<\e[0m"

@@ -1,3 +1,5 @@
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 echo -e "\e[31m>>>> installing nginx <<<<\e[0m"
 yum install nginx -y
 echo -e "\e[31m>>>> start nginx services <<<<\e[0m"

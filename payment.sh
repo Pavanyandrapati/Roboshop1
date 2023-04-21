@@ -1,10 +1,11 @@
-source common.sh
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 echo -e "\e[31m>>>> install python36 <<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
 echo -e "\e[31m>>>> add user <<<<\e[0m"
 useradd ${app_user}
-
+rm -rf /app
 echo -e "\e[31m>>>> create dir <<<<\e[0m"
 mkdir /app
 

@@ -1,4 +1,5 @@
-source common.sh
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 echo -e "\e[31m>>>> Downloading content <<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -7,6 +8,7 @@ yum install nodejs -y
 
 echo -e "\e[31m>>>> adding user <<<<\e[0m"
 useradd ${app_user}
+rm -rf /app
 
 echo -e "\e[31m>>>> create dir <<<<\e[0m"
 mkdir /app

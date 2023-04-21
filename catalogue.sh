@@ -1,4 +1,5 @@
-source common.sh
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 
 echo -e "\e[31m>>>> Downloading content <<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash

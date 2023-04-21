@@ -1,4 +1,5 @@
-source common.sh
+script_path=${dirname $0}
+source ${script_patch}/common.sh
 echo -e "\e[31m>>>> install maven <<<<\e[0m"
 yum install maven -y
 
