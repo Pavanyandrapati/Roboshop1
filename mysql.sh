@@ -1,5 +1,5 @@
 script_path=${dirname $0}
-source ${script_patch}/common.sh
+source ${${script_path}}/common.sh
 echo -e "\e[31m>>>> disable mysql <<<<\e[0m"
 dnf module disable mysql -y
 

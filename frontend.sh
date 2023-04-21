@@ -1,5 +1,5 @@
 script_path=${dirname $0}
-source ${script_patch}/common.sh
+source ${${script_path}}/common.sh
 echo -e "\e[31m>>>> installing nginx <<<<\e[0m"
 yum install nginx -y
 echo -e "\e[31m>>>> start nginx services <<<<\e[0m"
@@ -13,5 +13,5 @@ cd /usr/share/nginx/html
 echo -e "\e[31m>>>> unzip content <<<<\e[0m"
 unzip /tmp/frontend.zip
 echo -e "\e[31m>>>> Copying roboshop serives <<<<\e[0m"
-cp {script_patch} /roboshop.service /etc/nginx/default.d/roboshop.conf
+cp {${script_path}} /roboshop.service /etc/nginx/default.d/roboshop.conf
 systemctl restart nginx
