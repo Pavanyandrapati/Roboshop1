@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source $script_path/common.sh
+source ${script_path}/common.sh
 
 func_print_head "install remirepo"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$log_file

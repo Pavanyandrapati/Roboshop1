@@ -41,7 +41,7 @@ func_app_prereq() {
  func_schema_setup() {
       if [ "$schema_setup" == "mongo" ]; then
      func_print_head "Copying mongo repo"
-     cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
 
      func_print_head "installing mongodb"
@@ -66,7 +66,7 @@ func_app_prereq() {
 func_systemd_setup() {
 
       func_print_head "copying services"
-      cp $script_path/${component}.service /etc/systemd/system/${component}.service &>>$log_file
+      cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
       func_stat_check $?
       func_print_head "system services"
       systemctl daemon-reload &>>$log_file

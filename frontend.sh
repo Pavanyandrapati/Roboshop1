@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source $script_path/common.sh
+source ${script_path}/common.sh
 
 func_print_head "installing nginx"
 yum install nginx -y &>>$log_file
@@ -25,6 +25,6 @@ unzip /tmp/frontend.zip &>>$log_file
 func_stat_check $?
 
 func_print_head "Copying roboshop serives"
-cp $script_path/roboshop.service /etc/nginx/default.d/roboshop.conf &>>$log_file
+cp ${script_path}/roboshop.service /etc/nginx/default.d/roboshop.conf &>>$log_file
 func_stat_check $?
 systemctl restart nginx &>>$log_file
