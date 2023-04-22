@@ -67,13 +67,14 @@ npm install
 
 func_systemd_setup
 
-schema_setup
+func_schema_setup
 
 }
 
 func-java() {
 func_print_head "install maven"
 yum install maven -y
+
 func_print_head "download maven dependencies"
     mvn clean package
     mv target/${component}-1.0.jar ${component}.jar
