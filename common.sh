@@ -26,30 +26,30 @@ func_app_prereq() {
   func_stat_check $?
 
   func_print_head "create dir"
-  rm -rf /app #&>>$log_file
-  mkdir /app 3&>>$log_file
+  rm -rf /app &>>$log_file
+  mkdir /app &>>$log_file
   func_stat_check $?
   func_print_head "Download app content"
-  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip #&>>$log_file
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
   cd /app
   func_stat_check $?
   func_print_head "unzip content"
-  unzip /tmp/${component}.zip #&>>$log_file
+  unzip /tmp/${component}.zip &>>$log_file
   cd /app
   func_stat_check $?
  }
  func_schema_setup() {
       if [ "$schema_setup" == "mongo" ]; then
      func_print_head "Copying mongo repo"
-     cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo #&>>$log_file
+     cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
 
      func_print_head "installing mongodb"
-     yum install mongodb-org-shell -y #&>>$log_file
+     yum install mongodb-org-shell -y &>>$log_file
      func_stat_check $?
 
      func_print_head "load schema"
-      mongo --host mongodb-dev.pavan345.online </app/schema/${component}.js #&>>$log_file
+      mongo --host mongodb-dev.pavan345.online </app/schema/${component}.js &>>$log_file
       func_stat_check $?
      fi
 
@@ -66,28 +66,28 @@ func_app_prereq() {
 func_systemd_setup() {
 
       func_print_head "copying services"
-      cp $script_path/${component}.service /etc/systemd/system/${component}.service #&>>$log_file
+      cp $script_path/${component}.service /etc/systemd/system/${component}.service &>>$log_file
       func_stat_check $?
       func_print_head "system services"
-      systemctl daemon-reload 3&>>$log_file
-      systemctl enable ${component} #&>>$log_file
-      systemctl start ${component} #&>>$log_file
+      systemctl daemon-reload &>>$log_file
+      systemctl enable ${component} &>>$log_file
+      systemctl start ${component} &>>$log_file
       func_stat_check $?
 }
 func_nodejs() {
 
     func_print_head "conf Nodejs repos"
-    curl -sL https://rpm.nodesource.com/setup_lts.x | bash #&>>$log_file
+    curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
     func_stat_check $?
 
     func_print_head "install nodejs"
-    yum install nodejs -y #&>>$log_file
+    yum install nodejs -y &>>$log_file
     func_stat_check $?
 
     func_app_prereq
 
     func_print_head "instal dependencies"
-    npm install #&>>$log_file
+    npm install &>>$log_file
     func_stat_check $?
 
     func_schema_setup
