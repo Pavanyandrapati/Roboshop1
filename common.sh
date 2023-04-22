@@ -43,20 +43,22 @@ func_app_prereq() {
      func_print_head "Copying mongo repo"
      cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
+
      func_print_head "installing mongodb"
      yum install mongodb-org-shell -y &>>$log_file
      func_stat_check $?
+
      func_print_head "load schema"
-      mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js &>>$log_file
+      mongo --host mongodb-dev.pavan345.online </app/schema/${component}.js &>>$log_file
       func_stat_check $?
      fi
 
      if [ "${schema_setup}" == "mysql" ]; then
-
-     func_print_head "install mysql"
-     yum install mysql -y &>>$log_file
+        func_print_head "install mysql"
+       yum install mysql -y &>>$log_file
       func_stat_check $?
-     func_print_head "load schema"
+
+      func_print_head "load schema"
       mysql -h mysql-dev.pavan345.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
       func_stat_check $?
      fi
