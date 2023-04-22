@@ -6,6 +6,14 @@ func_print_head() {
   echo -e "\e[35m>>>> $1 <<<<\e[0m"
  }
 
+func_stat_check() {
+
+  if [ $? -eq 0 ]; then
+     echo -e "\e[32mSUCCESS\e[0m"
+  else
+     echo -e "\e[32MFAILURE\e[0m"
+  fi
+}
 func_app_prereq() {
   func_print_head "add user"
   useradd ${app_user}
@@ -63,28 +71,35 @@ func_nodejs() {
 
     func_print_head "install nodejs"
     yum install nodejs -y
-
+    func_stat_check
     func_app_prereq
 
     func_print_head "instal dependencies"
     npm install
-
+    func_stat_check
     func_schema_setup
+    func_stat_check
     func_systemd_setup
+    func_stat_check
 
 }
 
 func_java() {
      func_print_head "install maven"
       yum install maven -y
-
+       func_stat_check
       func_print_head "download maven dependencies"
           mvn clean package
           mv target/${component}-1.0.jar ${component}.jar
-
+      func_stat_check
       func_app_prereq
 
       func_systemd_setup
+      func_stat_check
       func_schema_setup
+      func_stat_check
 }
 
+
+}
+}
