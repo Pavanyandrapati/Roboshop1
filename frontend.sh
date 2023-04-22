@@ -3,12 +3,12 @@ script_path=$(dirname "$script")
 source $script_path/common.sh
 
 func_print_head "installing nginx"
-yum install nginx -y #&>>$ log_file
+yum install nginx -y &>>$ log_file
 func_stat_check $?
 
 func_print_head "start nginx services"
-systemctl enable nginx  #&>>$ log_file
-systemctl start nginx #&>>$ log_file
+systemctl enable nginx  &>>$ log_file
+systemctl start nginx &>>$ log_file
 func_stat_check $?
 
 func_print_head "removing contents"
