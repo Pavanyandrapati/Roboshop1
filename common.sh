@@ -99,7 +99,3 @@ func_java() {
       func_schema_setup
       func_stat_check
 }
-
-
-}
-}
