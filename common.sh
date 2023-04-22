@@ -9,10 +9,12 @@ func_print_head() {
 
 func_stat_check() {
 
-  if [ $? -eq 0 ]; then
+  if [ $1 -eq 0 ]; then
      echo -e "\e[32mSUCCESS\e[0m"
   else
      echo -e "\e[32MFAILURE\e[0m"
+     echo "refer the log information"
+     exit 1
   fi
 }
 func_app_prereq() {
