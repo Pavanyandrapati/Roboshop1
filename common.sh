@@ -98,16 +98,16 @@ func_nodejs() {
 }
 
 func_java() {
-     func_print_head "install maven"
-      yum install maven -y &>>$log_file
+       func_print_head "install maven"
+       yum install maven -y &>>$log_file
        func_stat_check $?
+
+       func_app_prereq
 
       func_print_head "download maven dependencies"
        mvn clean package &>>$log_file
        mv target/${component}-1.0.jar ${component}.jar &>>$log_file
       func_stat_check $?
-
-      func_app_prereq &>>$log_file
 
       func_systemd_setup
 
