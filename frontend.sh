@@ -7,8 +7,8 @@ yum install nginx -y #&>>$ log_file
 func_stat_check $?
 
 func_print_head "start nginx services"
-systemctl enable nginx &>>$ log_file
-systemctl start nginx &>>$ log_file
+systemctl enable nginx  #&>>$ log_file
+systemctl start nginx #&>>$ log_file
 func_stat_check $?
 
 func_print_head "removing contents"
