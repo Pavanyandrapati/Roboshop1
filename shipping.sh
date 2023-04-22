@@ -3,12 +3,13 @@ script_path=$(dirname "$script")
 source $script_path/common.sh
 mysql_root_password=$1
 
-if [ -z "$mysql_root_password"]; then
+ if [ -z "$mysql_root_password"]; then
    echo input missing
    exit
-fi
-component='shipping"
-schema_setup=mysql
-func_java
+ fi
 
+ component="shipping"
 
+ schema_setup=mysql
+
+ func_java
