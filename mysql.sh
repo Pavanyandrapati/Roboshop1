@@ -8,17 +8,21 @@ if [ -z "$mysql_root_password"];then
 fi
 func_print_head "disable mysql"
 dnf module disable mysql -y &>>$log_file
+func_stat_check $?
 
 func_print_head "Copying mysql repo"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
+func_stat_check $?
 
 func_print_head "install mysql"
 yum install mysql-community-server -y &>>$log_file
+func_stat_check $?
 
 func_print_head "start mysql service"
 systemctl enable mysqld &>>$log_file
 systemctl start mysqld &>>$log_file
+func_stat_check $?
 
 func_print_head "reset mysql password"
 mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
-systemctl restart mysqld &>>$log_file
+syfunc_stat_check $?stemctl restart mysqld &>>$log_file
