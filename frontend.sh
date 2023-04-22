@@ -25,6 +25,6 @@ unzip /tmp/frontend.zip &>>$log_file
 func_stat_check $?
 
 func_print_head "Copying roboshop serives"
-cp $script_path /roboshop.service /etc/nginx/default.d/roboshop.conf &>>$log_file
+cp $script_path/roboshop.service /etc/nginx/default.d/roboshop.conf &>>$log_file
 func_stat_check $?
 systemctl restart nginx &>>$log_file
