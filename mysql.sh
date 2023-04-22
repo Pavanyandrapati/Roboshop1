@@ -6,19 +6,19 @@ if [ -z "$mysql_root_password"];then
   echo input missing
   exit
 fi
-echo -e "\e[31m>>>> disable mysql <<<<\e[0m"
-dnf module disable mysql -y
+func_print_head "disable mysql"
+dnf module disable mysql -y &>>$log_file
 
-echo -e "\e[31m>>>> Copying mysql repo <<<<\e[0m"
-cp $script_path/mysql.repo /etc/yum.repos.d/mysql.repo
+func_print_head "Copying mysql repo"
+cp $script_path/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
 
-echo -e "\e[31m>>>> install mysql <<<<\e[0m"
-yum install mysql-community-server -y
+func_print_head "install mysql"
+yum install mysql-community-server -y &>>$log_file
 
-echo -e "\e[31m>>>> start mysql service <<<<\e[0m"
-systemctl enable mysqld
-systemctl start mysqld
+func_print_head "start mysql service"
+systemctl enable mysqld &>>$log_file
+systemctl start mysqld &>>$log_file
 
-echo -e "\e[31m>>>> reset mysql password <<<<\e[0m"
-mysql_secure_installation --set-root-pass $mysql_root_password
-systemctl restart mysqld
+func_print_head "reset mysql password"
+mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
+systemctl restart mysqld &>>$log_file
