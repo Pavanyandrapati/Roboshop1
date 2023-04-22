@@ -43,6 +43,7 @@ func_app_prereq() {
      func_print_head "Copying mongo repo"
      cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
+
      func_print_head "installing mongodb"
      yum install mongodb-org-shell -y &>>$log_file
      func_stat_check $?
