@@ -76,14 +76,14 @@ func_schema_setup() {
     mysql -h mysql-dev.pavan345.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 fi
 }
-func_systemd_setup() {
- func_print_head"copying ${component service}"
- cp $script_path/${component}.service /etc/systemd/system/${component}.service
+  func_systemd_setup() {
 
-  func_print_head ${component service}"
-   systemctl daemon-reload
-   systemctl enable ${component}
-   systemctl start ${component}
-}
+    func_print_head"copying ${component service}"
+      cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
+      func_print_head "${component service}"
 
+      systemctl daemon-reload
+      systemctl enable ${component}
+      systemctl start ${component}
+  }
