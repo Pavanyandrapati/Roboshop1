@@ -7,7 +7,7 @@ if [ -z "$mysql_root_password"]; then
    echo input missing
    exit
 fi
-component=shipping
+component='shipping"
 schema_setup=mysql
 func_java
 

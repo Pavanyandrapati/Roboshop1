@@ -53,35 +53,36 @@ func_systemd_setup() {
  systemctl start ${component}
 }
 
-func_nodejs() {
-func_print_head "Downloading content"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  func_nodejs() {
 
-func_print_head "install nodejs"
-yum install nodejs -y
+  func_print_head "Downloading content"
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-func_app_prereq
+  func_print_head "install nodejs"
+  yum install nodejs -y
 
-func_print_head "instal dependencies"
-npm install
+  func_app_prereq
 
-func_systemd_setup
+  func_print_head "instal dependencies"
+  npm install
 
-func_schema_setup
+  func_systemd_setup
 
-}
+  func_schema_setup
 
-func-java() {
-func_print_head "install maven"
-yum install maven -y
+  }
 
-func_print_head "download maven dependencies"
-    mvn clean package
-    mv target/${component}-1.0.jar ${component}.jar
+  func_java() {
+  func_print_head "install maven"
+  yum install maven -y
 
-func_app_prereq
+  func_print_head "download maven dependencies"
+      mvn clean package
+      mv target/${component}-1.0.jar ${component}.jar
 
-func_systemd_setup
-func_schema_setup
-}
+  func_app_prereq
+
+  func_systemd_setup
+  func_schema_setup
+  }
 
