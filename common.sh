@@ -80,10 +80,10 @@ func_systemd_setup() {
  func_print_head"copying ${component service}"
  cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
- func_print_head start ${component service}"
- systemctl daemon-reload
- systemctl enable ${component}
- systemctl start ${component}
+  func_print_head ${component service}"
+   systemctl daemon-reload
+   systemctl enable ${component}
+   systemctl start ${component}
 }
 
 
