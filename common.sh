@@ -43,7 +43,6 @@ func_app_prereq() {
      func_print_head "Copying mongo repo"
      cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
      func_stat_check $?
-
      func_print_head "installing mongodb"
      yum install mongodb-org-shell -y &>>$log_file
      func_stat_check $?
@@ -89,9 +88,10 @@ func_nodejs() {
     func_print_head "instal dependencies"
     npm install &>>$log_file
     func_stat_check $?
-    func_schema_setup &>>$log_file
 
-    func_systemd_setup &>>$log_file
+    func_schema_setup
+
+    func_systemd_setup
 
 
 }
@@ -108,8 +108,8 @@ func_java() {
 
       func_app_prereq &>>$log_file
 
-      func_systemd_setup &>>$log_file
+      func_systemd_setup
 
-      func_schema_setup &>>$log_file
+      func_schema_setup
 
 }
