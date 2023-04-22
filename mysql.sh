@@ -4,28 +4,28 @@ source ${script_path}/common.sh
 mysql_root_password=$1
 
 if [ -z "$mysql_root_password" ]; then
-  echo input missing
+  echo Input MySQL Root Password Missing
   exit
 fi
 
-func_print_head "disable mysql"
+
+func_print_head "Disable MySQL 8 Version"
 dnf module disable mysql -y &>>$log_file
 func_stat_check $?
 
-func_print_head "Copying mysql repo"
+func_print_head "Copy MySQL Repo File"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
 func_stat_check $?
 
-func_print_head "install mysql"
+func_print_head "Install MySQL"
 yum install mysql-community-server -y &>>$log_file
 func_stat_check $?
 
-func_print_head "start mysql service"
+func_print_head "Start MySQL"
 systemctl enable mysqld &>>$log_file
-systemctl start mysqld &>>$log_file
+systemctl restart mysqld &>>$log_file
 func_stat_check $?
 
-func_print_head "reset mysql password"
+func_print_head "Reset MySQL Password"
 mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
-syfunc_stat_check $?stemctl restart mysqld &>>$log_file
 func_stat_check $?
