@@ -34,6 +34,7 @@ func_app_prereq() {
      func_print_head "load schema"
       mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js
      fi
+
      if [ "${schema_setup}" == "mysql" ]; then
 
      func_print_head "install mysql"
@@ -45,7 +46,7 @@ func_app_prereq() {
  }
 func_systemd_setup() {
 
-      func_print_head"copying ${component service}"
+      func_print_head "copying ${component service}"
       cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
       func_print_head "${component service}"
@@ -68,9 +69,8 @@ func_nodejs() {
     func_print_head "instal dependencies"
     npm install
 
-    func_systemd_setup
-
     func_schema_setup
+    func_systemd_setup
 
 }
 
