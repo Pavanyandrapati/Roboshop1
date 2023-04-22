@@ -2,54 +2,85 @@ app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 
-print_head() {
+func_print_head() {
   echo -e "\e[35m>>>> $1 <<<<\e[0m"
  }
 
-schema_setup() {
+func_app_prereq() {
+  func_print_head "add user"
+  useradd ${app_user}
+  rm -rf /app
+
+  func_print_head "create dir"
+  mkdir /app
+
+  func_print_head "Download app content"
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+  cd /app
+
+  func_print_head "unzip content"
+  unzip /tmp/${component}.zip
+  cd /app
+
+  }
+func_schema_setup() {
   if [ "$schema_setup" == "mongo" ]; then
-    print_head "Copying mongo repo"
+    func_print_head "Copying mongo repo"
     cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
 
-    print_head "installing mongodb"
+    func_print_head "installing mongodb"
     yum install mongodb-org-shell -y
 
-    print_head "load schema"
+    func_print_head "load schema"
      mongo --host mongodb-dev.pavan345.online </app/schema/catalogue.js
   fi
+  if [ "${schema_setup}" == "mysql" ]; then
+
+    func_print_head "install mysql"
+    yum install mysql -y
+
+    func_print_head "load schema"
+    mysql -h mysql-dev.pavan345.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+fi
 }
+func_systemd_setup() {
+ func_print_head"copying ${component service}"
+ cp $script_path/${component}.service /etc/systemd/system/${component}.service
+
+ func_print_head start ${component service}"
+ systemctl daemon-reload
+ systemctl enable ${component}
+ systemctl start ${component}
+}
+
 func_nodejs() {
-print_head "Downloading content"
+func_print_head "Downloading content"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-print_head "install nodejs"
+func_print_head "install nodejs"
 yum install nodejs -y
 
-print_headadd "user"
-useradd ${app_user}ALL
+func_app_prereq
 
-print_head "create dir"
-rm -rf /app
-mkdir /app
-
-print_head "Downloading content"
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
-cd /app
-
-print_head "unzip content"
-unzip /tmp/${component}.zip
-
-print_head "instal dependencies"
+func_print_head "instal dependencies"
 npm install
 
-print_head "Copying service"
-cp $script_path/${component}.service /etc/systemd/system/${component}.service
-
-print_head "start cart service"
-systemctl daemon-reload
-systemctl enable ${component}
-systemctl start ${component}
+func_systemd_setup
 
 schema_setup
 
 }
+
+func-java() {
+func_print_head "install maven"
+yum install maven -y
+func_print_head "download maven dependencies"
+    mvn clean package
+    mv target/${component}-1.0.jar ${component}.jar
+
+func_app_prereq
+
+func_systemd_setup
+func_schema_setup
+}
+
