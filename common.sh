@@ -54,13 +54,13 @@ func_app_prereq() {
      fi
 
      if [ "${schema_setup}" == "mysql" ]; then
-        func_print_head "install mysql"
-       yum install mysql -y &>>$log_file
-      func_stat_check $?
+         func_print_head "install mysql"
+         yum install mysql -y &>>$log_file
+         func_stat_check $?
 
-      func_print_head "load schema"
-      mysql -h mysql-dev.pavan345.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
-      func_stat_check $?
+           func_print_head "load schema"
+           mysql -h mysql-dev.pavan345.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
+            func_stat_check $?
      fi
  }
 func_systemd_setup() {
