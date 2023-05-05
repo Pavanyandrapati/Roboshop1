@@ -4,7 +4,7 @@ source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 if [ -z "$rabbitmq_appuser_password" ];then
   echo input missing
-  exit
+  exit 1
 fi
 component=payment
 func_python
