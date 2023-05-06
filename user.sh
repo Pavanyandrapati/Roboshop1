@@ -4,6 +4,7 @@ source ${script_path}/common.sh
 func_nodejs
 
 component = user
-schema_setup = mongo
 func_nodejs
+schema_setup = mongo
+
 
